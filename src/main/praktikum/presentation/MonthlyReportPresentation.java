@@ -13,24 +13,24 @@ public class MonthlyReportPresentation {
         this.reports = reports;
     }
 
-    public Stream<Item> entries() {
+    public Stream<Item> getEntries() {
         return reports.stream().map(e -> {
-            Product mostPopular = e.income()
+            Product mostPopular = e.getIncome()
                     .max(Comparator.comparingInt(MonthlyReportPresentation::calcSubTotal))
                     .map(Product::new)
                     .orElse(Product.UNKNOWN);
 
-            Product mostExpense = e.expenses()
+            Product mostExpense = e.getExpenses()
                     .max(Comparator.comparingInt(MonthlyReportPresentation::calcSubTotal))
                     .map(Product::new)
                     .orElse(Product.UNKNOWN);
 
-            return new Item(e.year(), e.month(), mostPopular, mostExpense);
+            return new Item(e.getYear(), e.getMonth(), mostPopular, mostExpense);
         });
     }
 
     private static int calcSubTotal(MonthlyReport.Entry entry) {
-        return entry.quantity() * entry.unitPrice();
+        return entry.getQuantity() * entry.getUnitPrice();
     }
 
     public static class Item {
@@ -46,19 +46,19 @@ public class MonthlyReportPresentation {
             this.largestExpense = largestExpense;
         }
 
-        public int year() {
+        public int getYear() {
             return year;
         }
 
-        public Month month() {
+        public Month getMonth() {
             return month;
         }
 
-        public Product largestIncome() {
+        public Product getLargestIncome() {
             return largestIncome;
         }
 
-        public Product largestExpense() {
+        public Product getLargestExpense() {
             return largestExpense;
         }
     }
@@ -70,7 +70,7 @@ public class MonthlyReportPresentation {
         private static final Product UNKNOWN = new Product("Отсутствует", 0);
 
         public Product(MonthlyReport.Entry entry) {
-            productName = entry.productName();
+            productName = entry.getProductName();
             amount = calcSubTotal(entry);
         }
 
@@ -79,11 +79,11 @@ public class MonthlyReportPresentation {
             this.amount = amount;
         }
 
-        public String productName() {
+        public String getProductName() {
             return productName;
         }
 
-        public int amount() {
+        public int getAmount() {
             return amount;
         }
 

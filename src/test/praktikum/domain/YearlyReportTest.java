@@ -17,8 +17,8 @@ class YearlyReportTest {
     public void testConstructor() {
         YearlyReport report = new YearlyReport(YEAR);
 
-        assertEquals(YEAR, report.year());
-        assertEquals(0, report.entries().count());
+        assertEquals(YEAR, report.getYear());
+        assertEquals(0, report.getEntries().count());
     }
 
     @Test
@@ -27,12 +27,12 @@ class YearlyReportTest {
 
         report.addEntry(MONTH, INCOME, EXPENSE);
 
-        YearlyReport.Entry entry = report.entries().findFirst().orElseThrow();
+        YearlyReport.Entry entry = report.getEntries().findFirst().orElseThrow();
 
-        assertEquals(YEAR, entry.year());
-        assertEquals(MONTH, entry.month());
-        assertEquals(INCOME, entry.income());
-        assertEquals(EXPENSE, entry.expenses());
+        assertEquals(YEAR, entry.getYear());
+        assertEquals(MONTH, entry.getMonth());
+        assertEquals(INCOME, entry.getIncome());
+        assertEquals(EXPENSE, entry.getExpenses());
     }
 
     @Test
@@ -41,12 +41,12 @@ class YearlyReportTest {
 
         report.addEntry(MONTH, INCOME, EXPENSE);
 
-        YearlyReport.Entry entry = report.recordAtMonth(MONTH);
+        YearlyReport.Entry entry = report.getRecordAtMonth(MONTH);
 
-        assertEquals(YEAR, entry.year());
-        assertEquals(MONTH, entry.month());
-        assertEquals(INCOME, entry.income());
-        assertEquals(EXPENSE, entry.expenses());
+        assertEquals(YEAR, entry.getYear());
+        assertEquals(MONTH, entry.getMonth());
+        assertEquals(INCOME, entry.getIncome());
+        assertEquals(EXPENSE, entry.getExpenses());
     }
 
     @Test
@@ -55,6 +55,6 @@ class YearlyReportTest {
 
         report.addEntry(MONTH, INCOME, EXPENSE);
 
-        assertThrows(NoSuchElementException.class, () -> report.recordAtMonth(NOT_EXISTED_MONTH));
+        assertThrows(NoSuchElementException.class, () -> report.getRecordAtMonth(NOT_EXISTED_MONTH));
     }
 }

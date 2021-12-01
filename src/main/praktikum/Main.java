@@ -50,24 +50,24 @@ public class Main {
                         break;
                     case 4:
                         MonthlyReportPresentation monthlyReportPresentation = helper.getMonthlyReportsPresentation();
-                        monthlyReportPresentation.entries()
+                        monthlyReportPresentation.getEntries()
                                 .forEach(e -> {
-                                    System.out.printf("Отчёт за %s %d года%n", e.month(), e.year());
+                                    System.out.printf("Отчёт за %s %d года%n", e.getMonth(), e.getYear());
                                     System.out.println("----------------------------------------------");
-                                    System.out.printf("Самый прибыльный товар: %s%n", e.largestIncome());
-                                    System.out.printf("Самая большая трата: %s%n", e.largestExpense());
+                                    System.out.printf("Самый прибыльный товар: %s%n", e.getLargestIncome());
+                                    System.out.printf("Самая большая трата: %s%n", e.getLargestExpense());
                                     System.out.println();
                                 });
                         break;
                     case 5:
                         YearlyReportPresentation yearlyReportPresentation = helper.getYearlyReportPresentation();
-                        System.out.printf("Отчёт за %d год%n", yearlyReportPresentation.year());
+                        System.out.printf("Отчёт за %d год%n", yearlyReportPresentation.getYear());
                         System.out.println("----------------------------------------------");
-                        yearlyReportPresentation.profit()
-                                .forEach(e -> System.out.printf("Прибыль за %s составила: %d%n", e.month(), e.profit()));
+                        yearlyReportPresentation.getProfit()
+                                .forEach(e -> System.out.printf("Прибыль за %s составила: %d%n", e.getMonth(), e.getProfit()));
                         System.out.println();
-                        System.out.printf("Средний расход за все месяцы: %.2f%n", yearlyReportPresentation.avgExpense());
-                        System.out.printf("Средний доход за все месяцы: %.2f%n", yearlyReportPresentation.avgIncome());
+                        System.out.printf("Средний расход за все месяцы: %.2f%n", yearlyReportPresentation.getAvgExpense());
+                        System.out.printf("Средний доход за все месяцы: %.2f%n", yearlyReportPresentation.getAvgIncome());
                         break;
                     default:
                         System.out.println(BAD_CHOICE);

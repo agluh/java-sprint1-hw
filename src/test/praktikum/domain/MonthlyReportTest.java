@@ -14,10 +14,10 @@ class MonthlyReportTest {
     @Test
     public void testConstructor() {
         MonthlyReport report = new MonthlyReport(YEAR, MONTH);
-        assertEquals(YEAR, report.year());
-        assertEquals(MONTH, report.month());
-        assertEquals(0, report.expenses().count());
-        assertEquals(0, report.income().count());
+        assertEquals(YEAR, report.getYear());
+        assertEquals(MONTH, report.getMonth());
+        assertEquals(0, report.getExpenses().count());
+        assertEquals(0, report.getIncome().count());
     }
 
     @Test
@@ -25,17 +25,17 @@ class MonthlyReportTest {
         MonthlyReport report = new MonthlyReport(YEAR, MONTH);
         report.addEntry(PRODUCT, QUANTITY, UNIT_PRICE, true);
 
-        assertEquals(1, report.expenses().count());
-        assertEquals(0, report.income().count());
+        assertEquals(1, report.getExpenses().count());
+        assertEquals(0, report.getIncome().count());
 
-        MonthlyReport.Entry entry = report.expenses().findFirst().orElseThrow();
+        MonthlyReport.Entry entry = report.getExpenses().findFirst().orElseThrow();
 
-        assertEquals(PRODUCT, entry.productName());
-        assertEquals(QUANTITY, entry.quantity());
-        assertEquals(UNIT_PRICE, entry.unitPrice());
+        assertEquals(PRODUCT, entry.getProductName());
+        assertEquals(QUANTITY, entry.getQuantity());
+        assertEquals(UNIT_PRICE, entry.getUnitPrice());
         assertTrue(entry.isExpense());
-        assertEquals(YEAR, entry.year());
-        assertEquals(MONTH, entry.month());
+        assertEquals(YEAR, entry.getYear());
+        assertEquals(MONTH, entry.getMonth());
     }
 
     @Test
@@ -43,16 +43,16 @@ class MonthlyReportTest {
         MonthlyReport report = new MonthlyReport(YEAR, MONTH);
         report.addEntry(PRODUCT, QUANTITY, UNIT_PRICE, false);
 
-        assertEquals(0, report.expenses().count());
-        assertEquals(1, report.income().count());
+        assertEquals(0, report.getExpenses().count());
+        assertEquals(1, report.getIncome().count());
 
-        MonthlyReport.Entry entry = report.income().findFirst().orElseThrow();
+        MonthlyReport.Entry entry = report.getIncome().findFirst().orElseThrow();
 
-        assertEquals(PRODUCT, entry.productName());
-        assertEquals(QUANTITY, entry.quantity());
-        assertEquals(UNIT_PRICE, entry.unitPrice());
+        assertEquals(PRODUCT, entry.getProductName());
+        assertEquals(QUANTITY, entry.getQuantity());
+        assertEquals(UNIT_PRICE, entry.getUnitPrice());
         assertFalse(entry.isExpense());
-        assertEquals(YEAR, entry.year());
-        assertEquals(MONTH, entry.month());
+        assertEquals(YEAR, entry.getYear());
+        assertEquals(MONTH, entry.getMonth());
     }
 }

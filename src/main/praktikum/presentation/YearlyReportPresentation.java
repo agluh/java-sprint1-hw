@@ -13,33 +13,33 @@ public class YearlyReportPresentation {
         this.report = report;
     }
 
-    public Stream<Item> profit() {
-        List<Item> profit = report.entries()
+    public Stream<Item> getProfit() {
+        List<Item> profit = report.getEntries()
                 .map(Item::new)
                 .collect(Collectors.toList());
         return profit.stream();
     }
 
-    public double avgIncome() {
-        return report.entries()
-                .mapToDouble(YearlyReport.Entry::income)
+    public double getAvgIncome() {
+        return report.getEntries()
+                .mapToDouble(YearlyReport.Entry::getIncome)
                 .average()
                 .orElse(0);
     }
 
-    public double avgExpense() {
-        return report.entries()
-                .mapToDouble(YearlyReport.Entry::expenses)
+    public double getAvgExpense() {
+        return report.getEntries()
+                .mapToDouble(YearlyReport.Entry::getExpenses)
                 .average()
                 .orElse(0);
     }
 
-    public int year() {
-        return report.year();
+    public int getYear() {
+        return report.getYear();
     }
 
     private static int calcSubTotal(YearlyReport.Entry entry) {
-        return entry.income() - entry.expenses();
+        return entry.getIncome() - entry.getExpenses();
     }
 
     public static class Item {
@@ -47,15 +47,15 @@ public class YearlyReportPresentation {
         private final int profit;
 
         public Item(YearlyReport.Entry entry) {
-            month = entry.month();
+            month = entry.getMonth();
             profit = calcSubTotal(entry);
         }
 
-        public Month month() {
+        public Month getMonth() {
             return month;
         }
 
-        public int profit() {
+        public int getProfit() {
             return profit;
         }
     }

@@ -15,15 +15,15 @@ public class YearlyReport {
         entries = new LinkedHashMap<>();
     }
 
-    public int year() {
+    public int getYear() {
         return year;
     }
 
-    public Stream<Entry> entries() {
+    public Stream<Entry> getEntries() {
         return entries.values().stream();
     }
 
-    public Entry recordAtMonth(Month month) {
+    public Entry getRecordAtMonth(Month month) {
         if (!entries.containsKey(month)) {
             throw new NoSuchElementException(String.format("There is no records for month %s in yearly report for %d", month, year));
         }
@@ -57,19 +57,19 @@ public class YearlyReport {
             this.expenses = expenses;
         }
 
-        public Month month() {
+        public Month getMonth() {
             return month;
         }
 
-        public int year() {
-            return YearlyReport.this.year();
+        public int getYear() {
+            return YearlyReport.this.getYear();
         }
 
-        public int income() {
+        public int getIncome() {
             return income;
         }
 
-        public int expenses() {
+        public int getExpenses() {
             return expenses;
         }
     }

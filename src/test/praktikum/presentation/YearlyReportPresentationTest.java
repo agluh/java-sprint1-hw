@@ -33,21 +33,21 @@ class YearlyReportPresentationTest {
         YearlyReportPresentation presentation = new YearlyReportPresentation(report);
 
         double expectedAvgExpense = (double) (EXPENSES[0] + EXPENSES[1]) / 2;
-        assertEquals(expectedAvgExpense, presentation.avgExpense());
+        assertEquals(expectedAvgExpense, presentation.getAvgExpense());
 
         double expectedAvgIncome = (double) (INCOME[0] + INCOME[1]) / 2;
-        assertEquals(expectedAvgIncome, presentation.avgIncome());
+        assertEquals(expectedAvgIncome, presentation.getAvgIncome());
 
-        assertEquals(YEAR, presentation.year());
+        assertEquals(YEAR, presentation.getYear());
 
         var ref = new Object() {
             int i = 0;
         };
 
-        presentation.profit().forEach(a -> {
-            assertEquals(MONTHS[ref.i], a.month());
+        presentation.getProfit().forEach(a -> {
+            assertEquals(MONTHS[ref.i], a.getMonth());
             int expectedProfit = INCOME[ref.i] - EXPENSES[ref.i];
-            assertEquals(expectedProfit, a.profit());
+            assertEquals(expectedProfit, a.getProfit());
             ref.i++;
         });
     }

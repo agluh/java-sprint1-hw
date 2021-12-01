@@ -43,13 +43,13 @@ class MonthlyReportPresentationTest {
         int expectedLargestExpense = QUANTITY[3] * UNIT_PRICE[3];
         int expectedLargestIncome = QUANTITY[0] * UNIT_PRICE[0];
 
-        MonthlyReportPresentation.Item item = presentation.entries().findFirst().orElseThrow();
+        MonthlyReportPresentation.Item item = presentation.getEntries().findFirst().orElseThrow();
 
-        assertEquals(YEAR, item.year());
-        assertEquals(MONTH, item.month());
-        assertEquals(expectedLargestExpense, item.largestExpense().amount());
-        assertEquals(PRODUCTS[3], item.largestExpense().productName());
-        assertEquals(expectedLargestIncome, item.largestIncome().amount());
-        assertEquals(PRODUCTS[0], item.largestIncome().productName());
+        assertEquals(YEAR, item.getYear());
+        assertEquals(MONTH, item.getMonth());
+        assertEquals(expectedLargestExpense, item.getLargestExpense().getAmount());
+        assertEquals(PRODUCTS[3], item.getLargestExpense().getProductName());
+        assertEquals(expectedLargestIncome, item.getLargestIncome().getAmount());
+        assertEquals(PRODUCTS[0], item.getLargestIncome().getProductName());
     }
 }

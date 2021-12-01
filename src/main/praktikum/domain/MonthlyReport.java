@@ -17,19 +17,19 @@ public class MonthlyReport {
         entries = new ArrayList<>();
     }
 
-    public int year() {
+    public int getYear() {
         return year;
     }
 
-    public Month month() {
+    public Month getMonth() {
         return month;
     }
 
-    public Stream<Entry> income() {
+    public Stream<Entry> getIncome() {
         return entries.stream().filter(Predicate.not(Entry::isExpense));
     }
 
-    public Stream<Entry> expenses() {
+    public Stream<Entry> getExpenses() {
         return entries.stream().filter(Entry::isExpense);
     }
 
@@ -65,15 +65,15 @@ public class MonthlyReport {
             this.isExpense = isExpense;
         }
 
-        public String productName() {
+        public String getProductName() {
             return productName;
         }
 
-        public int quantity() {
+        public int getQuantity() {
             return quantity;
         }
 
-        public int unitPrice() {
+        public int getUnitPrice() {
             return unitPrice;
         }
 
@@ -81,12 +81,12 @@ public class MonthlyReport {
             return isExpense;
         }
 
-        public int year() {
-            return MonthlyReport.this.year();
+        public int getYear() {
+            return MonthlyReport.this.getYear();
         }
 
-        public Month month() {
-            return MonthlyReport.this.month();
+        public Month getMonth() {
+            return MonthlyReport.this.getMonth();
         }
     }
 }

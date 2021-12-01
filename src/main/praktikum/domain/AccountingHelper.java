@@ -1,6 +1,5 @@
-package praktikum;
+package praktikum.domain;
 
-import praktikum.domain.*;
 import praktikum.presentation.*;
 
 import java.util.ArrayList;

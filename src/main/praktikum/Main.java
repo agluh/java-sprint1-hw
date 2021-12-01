@@ -2,100 +2,18 @@ package praktikum;
 
 import praktikum.domain.*;
 import praktikum.io.*;
-import praktikum.presentation.*;
-
-import java.util.Scanner;
+import praktikum.app.*;
 
 public class Main {
-    private final static String BAD_CHOICE = "Извините, такой команды нет.";
 
     public static void main(String[] args) {
-        boolean shouldExit = false;
-        Scanner scanner = new Scanner(System.in);
         ReportParser parser = new CSVReportParser();
         AccountingHelper helper = new AccountingHelper(
                 new LocalReportRepository(parser, "resources", "csv"),
                 new LocalReportRepository(parser, "resources", "csv")
         );
-
-        do {
-            printMenu();
-
-            int command;
-            try {
-                command = Integer.parseInt(scanner.next());
-            } catch (NumberFormatException e) {
-                System.out.println(BAD_CHOICE);
-                System.out.println();
-                continue;
-            }
-
-            try {
-                switch (command) {
-                    case 0:
-                        System.out.println("До свидания!");
-                        shouldExit = true;
-                        break;
-                    case 1:
-                        helper.loadMonthlyReports();
-                        System.out.println("Месячные отчёты успешно загружены!");
-                        break;
-                    case 2:
-                        helper.loadYearlyReport();
-                        System.out.println("Годовой отчёт успешно загружен!");
-                        break;
-                    case 3:
-                        helper.validateReports();
-                        System.out.println("Всё сходится, отчёты в порядке!");
-                        break;
-                    case 4:
-                        MonthlyReportPresentation monthlyReportPresentation = helper.getMonthlyReportsPresentation();
-                        monthlyReportPresentation.getEntries()
-                                .forEach(e -> {
-                                    System.out.printf("Отчёт за %s %d года%n", e.getMonth(), e.getYear());
-                                    System.out.println("----------------------------------------------");
-                                    System.out.printf("Самый прибыльный товар: %s%n", e.getLargestIncome());
-                                    System.out.printf("Самая большая трата: %s%n", e.getLargestExpense());
-                                    System.out.println();
-                                });
-                        break;
-                    case 5:
-                        YearlyReportPresentation yearlyReportPresentation = helper.getYearlyReportPresentation();
-                        System.out.printf("Отчёт за %d год%n", yearlyReportPresentation.getYear());
-                        System.out.println("----------------------------------------------");
-                        yearlyReportPresentation.getProfit()
-                                .forEach(e -> System.out.printf("Прибыль за %s составила: %d%n", e.getMonth(), e.getProfit()));
-                        System.out.println();
-                        System.out.printf("Средний расход за все месяцы: %.2f%n", yearlyReportPresentation.getAvgExpense());
-                        System.out.printf("Средний доход за все месяцы: %.2f%n", yearlyReportPresentation.getAvgIncome());
-                        break;
-                    default:
-                        System.out.println(BAD_CHOICE);
-                }
-            } catch (AbsentOfMonthlyReportsException e) {
-                System.out.println("Ошибка: месячные отчёты ещё не были загружены!");
-            } catch (AbsentOfYearlyReportException e) {
-                System.out.println("Ошибка: годовой отчёт ещё не был загружен!");
-            } catch (ReportLoadingException e) {
-                System.out.println("Ошибка: не удалось загрузить отчёт!");
-            } catch (ReportParsingException e) {
-                System.out.println("Ошибка: не удалось разобрать отчёт!");
-            } catch (ReportValidationException e) {
-                System.out.printf("Ошибка: данные в отчётах не сходятся. Проблемный месяц: %s%n", e.monthCausedAt());
-            }
-
-            System.out.println();
-        } while (!shouldExit);
-    }
-
-    private static void printMenu() {
-        System.out.println("Пожалуйста, выберите действие:");
-        System.out.println("1 - Считать все месячные отчёты");
-        System.out.println("2 - Считать годовой отчёт");
-        System.out.println("3 - Сверить отчёты");
-        System.out.println("4 - Вывести информацию о всех месячных отчётах");
-        System.out.println("5 - Вывести информацию о годовом отчёте");
-        System.out.println("Чтобы выйти из программы, наберите 0");
+        Application app = new ConsoleApplication(System.in, System.out, helper);
+        app.run();
     }
 }
 

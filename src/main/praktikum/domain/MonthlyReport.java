@@ -52,11 +52,11 @@ public class MonthlyReport {
             }
 
             if (quantity <= 0) {
-                throw new IllegalArgumentException("Quantity value should be greater than 0.");
+                throw new IllegalArgumentException("Quantity value should be greater than 0");
             }
 
             if (unitPrice <= 0) {
-                throw new IllegalArgumentException("Unit price value should be greater than 0.");
+                throw new IllegalArgumentException("Unit price value should be greater than 0");
             }
 
             this.productName = productName;

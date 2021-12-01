@@ -25,7 +25,7 @@ public enum Month {
      */
     public static Month fromInteger(int monthNumber) {
         if (monthNumber < 1 || monthNumber > 12) {
-            throw new IllegalArgumentException("praktikum.domain.Month number should be in range from 1 to 12.");
+            throw new IllegalArgumentException("Month number should be in range from 1 to 12");
         }
 
         return Month.values()[monthNumber - 1];

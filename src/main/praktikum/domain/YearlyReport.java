@@ -45,11 +45,11 @@ public class YearlyReport {
             Objects.requireNonNull(month);
 
             if (income < 0) {
-                throw new IllegalArgumentException("Income value should be greater or equals to 0.");
+                throw new IllegalArgumentException("Income value should be greater or equals to 0");
             }
 
             if (expenses < 0) {
-                throw new IllegalArgumentException("Expenses value should be greater or equals to 0.");
+                throw new IllegalArgumentException("Expenses value should be greater or equals to 0");
             }
 
             this.month = month;

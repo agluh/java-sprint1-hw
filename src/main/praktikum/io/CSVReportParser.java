@@ -54,7 +54,7 @@ public class CSVReportParser implements ReportParser {
 
                 report.addEntry(Month.fromInteger(month), income, expenses);
             } catch (IllegalArgumentException e) {
-                throw new ReportParsingException();
+                throw new ReportParsingException(e);
             }
         }
     }
@@ -86,7 +86,7 @@ public class CSVReportParser implements ReportParser {
 
                 report.addEntry(productName, quantity, unitPrice, isExpense);
             } catch (IllegalArgumentException e) {
-                throw new ReportParsingException();
+                throw new ReportParsingException(e);
             }
         }
     }

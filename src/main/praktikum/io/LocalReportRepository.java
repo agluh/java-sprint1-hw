@@ -37,7 +37,7 @@ public class LocalReportRepository implements MonthlyReportRepository, YearlyRep
         try {
             return Files.readString(Path.of(path, fileName));
         } catch (IOException e) {
-            throw new ReportLoadingException();
+            throw new ReportLoadingException(e);
         }
     }
 }

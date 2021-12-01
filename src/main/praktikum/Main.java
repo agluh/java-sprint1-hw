@@ -52,22 +52,22 @@ public class Main {
                         MonthlyReportPresentation monthlyReportPresentation = helper.getMonthlyReportsPresentation();
                         monthlyReportPresentation.entries()
                                 .forEach(e -> {
-                                    System.out.println("Отчёт за " + e.month() + " " + e.year() + " года");
+                                    System.out.printf("Отчёт за %s %d года%n", e.month(), e.year());
                                     System.out.println("----------------------------------------------");
-                                    System.out.println("Самый прибыльный товар: " + e.largestIncome());
-                                    System.out.println("Самая большая трата: " + e.largestExpense());
+                                    System.out.printf("Самый прибыльный товар: %s%n", e.largestIncome());
+                                    System.out.printf("Самая большая трата: %s%n", e.largestExpense());
                                     System.out.println();
                                 });
                         break;
                     case 5:
                         YearlyReportPresentation yearlyReportPresentation = helper.getYearlyReportPresentation();
-                        System.out.println("Отчёт за " + yearlyReportPresentation.year() + " год");
+                        System.out.printf("Отчёт за %d год%n", yearlyReportPresentation.year());
                         System.out.println("----------------------------------------------");
                         yearlyReportPresentation.profit()
-                                .forEach(e -> System.out.println("Прибыль за " + e.month() + " составила: " + e.profit()));
+                                .forEach(e -> System.out.printf("Прибыль за %s составила: %d%n", e.month(), e.profit()));
                         System.out.println();
-                        System.out.printf("Средний расход за все месяцы: %.2f\n", yearlyReportPresentation.avgExpense());
-                        System.out.printf("Средний доход за все месяцы: %.2f\n", yearlyReportPresentation.avgIncome());
+                        System.out.printf("Средний расход за все месяцы: %.2f%n", yearlyReportPresentation.avgExpense());
+                        System.out.printf("Средний доход за все месяцы: %.2f%n", yearlyReportPresentation.avgIncome());
                         break;
                     default:
                         System.out.println(BAD_CHOICE);
@@ -81,7 +81,7 @@ public class Main {
             } catch (ReportParsingException e) {
                 System.out.println("Ошибка: не удалось разобрать отчёт!");
             } catch (ReportValidationException e) {
-                System.out.println("Ошибка: данные в отчётах не сходятся. Проблемный месяц: " + e.monthCausedAt());
+                System.out.printf("Ошибка: данные в отчётах не сходятся. Проблемный месяц: %s%n", e.monthCausedAt());
             }
 
             System.out.println();

@@ -25,7 +25,7 @@ public class YearlyReport {
 
     public Entry recordAtMonth(Month month) {
         if (!entries.containsKey(month)) {
-            throw new NoSuchElementException("There is no records for month " + month + " in yearly report for " + year);
+            throw new NoSuchElementException(String.format("There is no records for month %s in yearly report for %d", month, year));
         }
 
         return entries.get(month);

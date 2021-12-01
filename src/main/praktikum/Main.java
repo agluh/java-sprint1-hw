@@ -14,8 +14,8 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         ReportParser parser = new CSVReportParser();
         AccountingHelper helper = new AccountingHelper(
-            new LocalReportRepository(parser, "resources","csv"),
-            new LocalReportRepository(parser, "resources","csv")
+                new LocalReportRepository(parser, "resources", "csv"),
+                new LocalReportRepository(parser, "resources", "csv")
         );
 
         do {
@@ -72,25 +72,20 @@ public class Main {
                     default:
                         System.out.println(BAD_CHOICE);
                 }
-            }
-            catch (AbsentOfMonthlyReportsException e) {
+            } catch (AbsentOfMonthlyReportsException e) {
                 System.out.println("Ошибка: месячные отчёты ещё не были загружены!");
-            }
-            catch (AbsentOfYearlyReportException e) {
+            } catch (AbsentOfYearlyReportException e) {
                 System.out.println("Ошибка: годовой отчёт ещё не был загружен!");
-            }
-            catch (ReportLoadingException e) {
+            } catch (ReportLoadingException e) {
                 System.out.println("Ошибка: не удалось загрузить отчёт!");
-            }
-            catch (ReportParsingException e) {
+            } catch (ReportParsingException e) {
                 System.out.println("Ошибка: не удалось разобрать отчёт!");
-            }
-            catch (ReportValidationException e) {
+            } catch (ReportValidationException e) {
                 System.out.println("Ошибка: данные в отчётах не сходятся. Проблемный месяц: " + e.monthCausedAt());
             }
 
             System.out.println();
-        } while(!shouldExit);
+        } while (!shouldExit);
     }
 
     private static void printMenu() {

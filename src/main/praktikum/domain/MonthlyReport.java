@@ -47,15 +47,15 @@ public class MonthlyReport {
         private Entry(String productName, int quantity, int unitPrice, boolean isExpense) {
             Objects.requireNonNull(productName);
 
-            if(productName.isEmpty()) {
+            if (productName.isEmpty()) {
                 throw new IllegalArgumentException("Product name should not be empty");
             }
 
-            if(quantity <= 0) {
+            if (quantity <= 0) {
                 throw new IllegalArgumentException("Quantity value should be greater than 0.");
             }
 
-            if(unitPrice <= 0) {
+            if (unitPrice <= 0) {
                 throw new IllegalArgumentException("Unit price value should be greater than 0.");
             }
 

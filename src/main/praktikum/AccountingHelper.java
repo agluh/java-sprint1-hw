@@ -52,13 +52,13 @@ public class AccountingHelper {
     }
 
     private void ensureMonthlyReportsAreLoaded() {
-        if(monthlyReports.isEmpty()) {
+        if (monthlyReports.isEmpty()) {
             throw new AbsentOfMonthlyReportsException();
         }
     }
 
     private void ensureYearlyReportIsLoaded() {
-        if(yearlyReport == null) {
+        if (yearlyReport == null) {
             throw new AbsentOfYearlyReportException();
         }
     }

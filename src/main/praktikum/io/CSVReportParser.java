@@ -20,7 +20,7 @@ public class CSVReportParser implements ReportParser {
     @Override
     public void populate(YearlyReport report, String data) {
         String[] lines = data.split("\\R");
-        if(lines.length % 2 == 0) {
+        if (lines.length % 2 == 0) {
             throw new ReportParsingException();
         }
 
@@ -28,7 +28,7 @@ public class CSVReportParser implements ReportParser {
             String[] firstLine = lines[i].split(",");
             String[] secondLine = lines[i + 1].split(",");
 
-            if(firstLine.length != 3 || secondLine.length != 3) {
+            if (firstLine.length != 3 || secondLine.length != 3) {
                 throw new ReportParsingException();
             }
 
@@ -53,8 +53,7 @@ public class CSVReportParser implements ReportParser {
                 int expenses = firstIsExpense ? firstAmount : secondAmount;
 
                 report.addEntry(Month.fromInteger(month), income, expenses);
-            }
-            catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException e) {
                 throw new ReportParsingException();
             }
         }
@@ -72,7 +71,7 @@ public class CSVReportParser implements ReportParser {
     @Override
     public void populate(MonthlyReport report, String data) {
         String[] lines = data.split("\\R");
-        if(lines.length == 0) {
+        if (lines.length == 0) {
             throw new ReportParsingException();
         }
 
@@ -86,8 +85,7 @@ public class CSVReportParser implements ReportParser {
                 int unitPrice = Integer.parseInt(line[3]);
 
                 report.addEntry(productName, quantity, unitPrice, isExpense);
-            }
-            catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException e) {
                 throw new ReportParsingException();
             }
         }

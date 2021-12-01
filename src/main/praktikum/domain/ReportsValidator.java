@@ -4,7 +4,7 @@ import java.util.List;
 
 public class ReportsValidator {
     public static void validate(List<MonthlyReport> monthlyReports, YearlyReport yearlyReport) {
-        for(MonthlyReport monthlyReport : monthlyReports) {
+        for (MonthlyReport monthlyReport : monthlyReports) {
             int monthlyExpenses = monthlyReport.expenses()
                     .mapToInt(ReportsValidator::calcSubTotal)
                     .sum();
@@ -14,8 +14,8 @@ public class ReportsValidator {
 
             YearlyReport.Entry yearlyRecord = yearlyReport.recordAtMonth(monthlyReport.month());
 
-            if(monthlyExpenses != yearlyRecord.expenses()
-                || monthlyIncome != yearlyRecord.income()) {
+            if (monthlyExpenses != yearlyRecord.expenses()
+                    || monthlyIncome != yearlyRecord.income()) {
                 throw new ReportValidationException(monthlyReport.month());
             }
         }

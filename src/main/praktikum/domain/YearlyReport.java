@@ -25,7 +25,9 @@ public class YearlyReport {
 
     public Entry getRecordAtMonth(Month month) {
         if (!entries.containsKey(month)) {
-            throw new NoSuchElementException(String.format("There is no records for month %s in yearly report for %d", month, year));
+            throw new NoSuchElementException(
+                    String.format("There is no records for month %s in yearly report for %d",
+                            month, year));
         }
 
         return entries.get(month);
@@ -45,11 +47,13 @@ public class YearlyReport {
             Objects.requireNonNull(month);
 
             if (income < 0) {
-                throw new IllegalArgumentException("Income value should be greater or equals to 0");
+                throw new IllegalArgumentException("Income value should be greater " +
+                        "or equals to 0");
             }
 
             if (expenses < 0) {
-                throw new IllegalArgumentException("Expenses value should be greater or equals to 0");
+                throw new IllegalArgumentException("Expenses value should be greater " +
+                        "or equals to 0");
             }
 
             this.month = month;

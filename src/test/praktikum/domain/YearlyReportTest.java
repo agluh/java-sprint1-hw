@@ -55,6 +55,7 @@ class YearlyReportTest {
 
         report.addEntry(MONTH, INCOME, EXPENSE);
 
-        assertThrows(NoSuchElementException.class, () -> report.getRecordAtMonth(NOT_EXISTED_MONTH));
+        assertThrows(NoSuchElementException.class, () ->
+                report.getRecordAtMonth(NOT_EXISTED_MONTH));
     }
 }

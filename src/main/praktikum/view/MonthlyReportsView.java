@@ -15,11 +15,14 @@ public class MonthlyReportsView implements View {
 
         presentation.getEntries()
                 .forEach(e -> {
-                    builder.append(String.format("Отчёт за %s %d года%n", e.getMonth(), e.getYear()));
+                    builder.append(String.format("Отчёт за %s %d года%n",
+                            e.getMonth(), e.getYear()));
                     builder.append("----------------------------------------------");
                     builder.append(System.lineSeparator());
-                    builder.append(String.format("Самый прибыльный товар: %s%n", e.getLargestIncome()));
-                    builder.append(String.format("Самая большая трата: %s%n", e.getLargestExpense()));
+                    builder.append(String.format("Самый прибыльный товар: %s%n",
+                            e.getLargestIncome()));
+                    builder.append(String.format("Самая большая трата: %s%n",
+                            e.getLargestExpense()));
                     builder.append(System.lineSeparator());
                 });
 

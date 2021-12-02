@@ -36,8 +36,9 @@ public class AccountingController implements Controller {
             } catch (ReportParsingException e) {
                 return new ErrorView("Не удалось разобрать отчёт!");
             } catch (ReportValidationException e) {
-                return new ErrorView(String.format("Данные в отчётах не сходятся. Проблемный месяц: %s%n",
-                        e.getMonthCausedAt()));
+                return new ErrorView(
+                        String.format("Данные в отчётах не сходятся. Проблемный месяц: %s%n",
+                                e.getMonthCausedAt()));
             } catch (Throwable throwable) {
                 return new ErrorView("Что-то пошло не так :(");
             }

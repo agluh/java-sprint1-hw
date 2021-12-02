@@ -17,10 +17,13 @@ public class YearlyReportView implements View {
         builder.append("----------------------------------------------");
         builder.append(System.lineSeparator());
         presentation.getProfit()
-                .forEach(e -> builder.append(String.format("Прибыль за %s составила: %d%n", e.getMonth(), e.getProfit())));
+                .forEach(e -> builder.append(String.format("Прибыль за %s составила: %d%n",
+                        e.getMonth(), e.getProfit())));
         builder.append(System.lineSeparator());
-        builder.append(String.format("Средний расход за все месяцы: %.2f%n", presentation.getAvgExpense()));
-        builder.append(String.format("Средний доход за все месяцы: %.2f%n", presentation.getAvgIncome()));
+        builder.append(String.format("Средний расход за все месяцы: %.2f%n",
+                presentation.getAvgExpense()));
+        builder.append(String.format("Средний доход за все месяцы: %.2f%n",
+                presentation.getAvgIncome()));
 
         return builder.toString();
     }

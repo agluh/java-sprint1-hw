@@ -12,7 +12,8 @@ public class ReportsValidator {
                     .mapToInt(ReportsValidator::calcSubTotal)
                     .sum();
 
-            YearlyReport.Entry yearlyRecord = yearlyReport.getRecordAtMonth(monthlyReport.getMonth());
+            YearlyReport.Entry yearlyRecord =
+                    yearlyReport.getRecordAtMonth(monthlyReport.getMonth());
 
             if (monthlyExpenses != yearlyRecord.getExpenses()
                     || monthlyIncome != yearlyRecord.getIncome()) {

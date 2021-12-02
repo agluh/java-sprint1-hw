@@ -19,7 +19,8 @@ public class LocalReportRepository implements MonthlyReportRepository, YearlyRep
 
     @Override
     public MonthlyReport getByDate(int year, Month month) {
-        String data = getFileData(String.format("m.%d%02d.%s", year, month.ordinal() + 1, extension));
+        String data = getFileData(String.format("m.%d%02d.%s",
+                year, month.ordinal() + 1, extension));
         MonthlyReport report = new MonthlyReport(year, month);
         parser.populate(report, data);
         return report;

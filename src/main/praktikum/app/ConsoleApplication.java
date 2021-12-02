@@ -1,8 +1,8 @@
 package praktikum.app;
 
-import praktikum.domain.*;
-import praktikum.io.*;
-import praktikum.presentation.*;
+import praktikum.command.*;
+import praktikum.controller.*;
+import praktikum.view.*;
 
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -11,97 +11,48 @@ import java.util.Scanner;
 public class ConsoleApplication implements Application {
     private final InputStream input;
     private final PrintStream output;
-    private final AccountingHelper helper;
+    private final Controller controller;
 
-    private final static String BAD_CHOICE = "Извините, такой команды нет.";
-
-    public ConsoleApplication(InputStream input, PrintStream output, AccountingHelper helper) {
+    public ConsoleApplication(InputStream input, PrintStream output, Controller controller) {
         this.input = input;
         this.output = output;
-        this.helper = helper;
+        this.controller = controller;
     }
 
     @Override
     public void run() {
-        boolean shouldExit = false;
-        Scanner scanner = new Scanner(input);
+         Scanner scanner = new Scanner(input);
 
-        do {
+        while (true) {
             printMenu();
 
             int command;
             try {
                 command = Integer.parseInt(scanner.next());
             } catch (NumberFormatException e) {
-                output.println(BAD_CHOICE);
+                output.println(new InvalidCommandView().render());
                 output.println();
                 continue;
             }
 
-            try {
-                switch (command) {
-                    case 0:
-                        output.println("До свидания!");
-                        shouldExit = true;
-                        break;
-                    case 1:
-                        helper.loadMonthlyReports();
-                        output.println("Месячные отчёты успешно загружены!");
-                        break;
-                    case 2:
-                        helper.loadYearlyReport();
-                        output.println("Годовой отчёт успешно загружен!");
-                        break;
-                    case 3:
-                        helper.validateReports();
-                        output.println("Всё сходится, отчёты в порядке!");
-                        break;
-                    case 4:
-                        printMonthlyReports();
-                        break;
-                    case 5:
-                        printYearlyReport();
-                        break;
-                    default:
-                        output.println(BAD_CHOICE);
-                }
-            } catch (AbsentOfMonthlyReportsException e) {
-                output.println("Ошибка: месячные отчёты ещё не были загружены!");
-            } catch (AbsentOfYearlyReportException e) {
-                output.println("Ошибка: годовой отчёт ещё не был загружен!");
-            } catch (ReportLoadingException e) {
-                output.println("Ошибка: не удалось загрузить отчёт!");
-            } catch (ReportParsingException e) {
-                output.println("Ошибка: не удалось разобрать отчёт!");
-            } catch (ReportValidationException e) {
-                output.printf("Ошибка: данные в отчётах не сходятся. Проблемный месяц: %s%n", e.monthCausedAt());
+            if(command == 0) {
+                output.println("До свидания!");
+                break;
             }
 
+            View view;
+            switch (command) {
+                case 1: view = controller.process(new LoadMonthlyReportsCommand()); break;
+                case 2: view = controller.process(new LoadYearlyReportCommand()); break;
+                case 3: view = controller.process(new ValidateReportsCommand()); break;
+                case 4: view = controller.process(new PrintMonthlyReportsCommand()); break;
+                case 5: view = controller.process(new PrintYearlyReportCommand()); break;
+                default: view = new InvalidCommandView();
+            }
+
+            output.println(view.render());
             output.println();
-        } while (!shouldExit);
-    }
-
-    private void printMonthlyReports() {
-        MonthlyReportPresentation monthlyReportPresentation = helper.getMonthlyReportsPresentation();
-        monthlyReportPresentation.getEntries()
-                .forEach(e -> {
-                    output.printf("Отчёт за %s %d года%n", e.getMonth(), e.getYear());
-                    output.println("----------------------------------------------");
-                    output.printf("Самый прибыльный товар: %s%n", e.getLargestIncome());
-                    output.printf("Самая большая трата: %s%n", e.getLargestExpense());
-                    output.println();
-                });
-    }
-
-    private void printYearlyReport() {
-        YearlyReportPresentation yearlyReportPresentation = helper.getYearlyReportPresentation();
-        output.printf("Отчёт за %d год%n", yearlyReportPresentation.getYear());
-        output.println("----------------------------------------------");
-        yearlyReportPresentation.getProfit()
-                .forEach(e -> output.printf("Прибыль за %s составила: %d%n", e.getMonth(), e.getProfit()));
-        output.println();
-        output.printf("Средний расход за все месяцы: %.2f%n", yearlyReportPresentation.getAvgExpense());
-        output.printf("Средний доход за все месяцы: %.2f%n", yearlyReportPresentation.getAvgIncome());
+        }
     }
 
     private void printMenu() {

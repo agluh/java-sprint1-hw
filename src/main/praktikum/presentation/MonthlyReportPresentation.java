@@ -6,6 +6,10 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Stream;
 
+/*
+ * This class is basically a presentation model and is used as
+ * a thin adapter between the domain level and the view.
+ */
 public class MonthlyReportPresentation {
     private final List<MonthlyReport> reports;
 

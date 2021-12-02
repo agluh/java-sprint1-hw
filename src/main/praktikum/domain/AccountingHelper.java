@@ -4,6 +4,9 @@ import praktikum.presentation.*;
 
 import java.util.ArrayList;
 
+/**
+ * This class is used as a domain service for orchestration purposes.
+ */
 public class AccountingHelper {
     private final MonthlyReportRepository monthlyReportRepository;
     private final YearlyReportRepository yearlyReportRepository;

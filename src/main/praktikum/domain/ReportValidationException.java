@@ -7,7 +7,7 @@ public class ReportValidationException extends RuntimeException {
         this.month = month;
     }
 
-    public Month monthCausedAt() {
+    public Month getMonthCausedAt() {
         return month;
     }
 }

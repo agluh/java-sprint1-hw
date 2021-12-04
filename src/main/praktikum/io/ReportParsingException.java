@@ -1,7 +1,6 @@
 package praktikum.io;
 
 public class ReportParsingException extends RuntimeException {
-
     public ReportParsingException() {
         super();
     }

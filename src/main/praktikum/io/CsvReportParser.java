@@ -1,17 +1,20 @@
 package praktikum.io;
 
-import praktikum.domain.*;
+import praktikum.domain.Month;
+import praktikum.domain.MonthlyReport;
+import praktikum.domain.ReportParser;
+import praktikum.domain.YearlyReport;
 
-public class CSVReportParser implements ReportParser {
+public class CsvReportParser implements ReportParser {
 
     /**
      * Each line of yearly CSV report has the following structure:
      * month,amount,is_expense
      *
-     * The first line should be a header, and it will be ignored during
+     * <p>The first line should be a header, and it will be ignored during
      * parsing process. Empty file (without entries) should still have a header.
      *
-     * There should be a pair of entries for each month:
+     * <p>There should be a pair of entries for each month:
      * one with is_expense as true and one with is_expense as false.
      * Order of those two entries is not determinate.
      *
@@ -63,7 +66,7 @@ public class CSVReportParser implements ReportParser {
      * Each line of monthly CSV report has the following structure:
      * item_name,is_expense,quantity,sum_of_one
      *
-     * The first line should be a header, and it will be ignored during
+     * <p>The first line should be a header, and it will be ignored during
      * parsing process. Empty file (without entries) should still have a header.
      *
      * @throws ReportParsingException in case of errors

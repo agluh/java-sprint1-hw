@@ -1,10 +1,10 @@
 package praktikum.presentation;
 
-import praktikum.domain.*;
-
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import praktikum.domain.Month;
+import praktikum.domain.YearlyReport;
 
 /*
  * This class is basically a presentation model and is used as

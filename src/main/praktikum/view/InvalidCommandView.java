@@ -1,7 +1,7 @@
 package praktikum.view;
 
 public class InvalidCommandView implements View {
-    private final static String INVALID_COMMAND = "Извините, такой команды нет.";
+    private static final String INVALID_COMMAND = "Извините, такой команды нет.";
 
     @Override
     public String render() {

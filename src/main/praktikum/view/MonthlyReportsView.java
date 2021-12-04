@@ -1,6 +1,6 @@
 package praktikum.view;
 
-import praktikum.presentation.*;
+import praktikum.presentation.MonthlyReportPresentation;
 
 public class MonthlyReportsView implements View {
     private final MonthlyReportPresentation presentation;

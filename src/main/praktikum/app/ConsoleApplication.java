@@ -1,12 +1,16 @@
 package praktikum.app;
 
-import praktikum.command.*;
-import praktikum.controller.*;
-import praktikum.view.*;
-
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
+import praktikum.command.LoadMonthlyReportsCommand;
+import praktikum.command.LoadYearlyReportCommand;
+import praktikum.command.PrintMonthlyReportsCommand;
+import praktikum.command.PrintYearlyReportCommand;
+import praktikum.command.ValidateReportsCommand;
+import praktikum.controller.Controller;
+import praktikum.view.InvalidCommandView;
+import praktikum.view.View;
 
 public class ConsoleApplication implements Application {
     private final InputStream input;
@@ -21,7 +25,7 @@ public class ConsoleApplication implements Application {
 
     @Override
     public void run() {
-         Scanner scanner = new Scanner(input);
+        Scanner scanner = new Scanner(input);
 
         while (true) {
             printMenu();
@@ -35,19 +39,30 @@ public class ConsoleApplication implements Application {
                 continue;
             }
 
-            if(command == 0) {
+            if (command == 0) {
                 output.println("До свидания!");
                 break;
             }
 
             View view;
             switch (command) {
-                case 1: view = controller.process(new LoadMonthlyReportsCommand()); break;
-                case 2: view = controller.process(new LoadYearlyReportCommand()); break;
-                case 3: view = controller.process(new ValidateReportsCommand()); break;
-                case 4: view = controller.process(new PrintMonthlyReportsCommand()); break;
-                case 5: view = controller.process(new PrintYearlyReportCommand()); break;
-                default: view = new InvalidCommandView();
+                case 1:
+                    view = controller.process(new LoadMonthlyReportsCommand());
+                    break;
+                case 2:
+                    view = controller.process(new LoadYearlyReportCommand());
+                    break;
+                case 3:
+                    view = controller.process(new ValidateReportsCommand());
+                    break;
+                case 4:
+                    view = controller.process(new PrintMonthlyReportsCommand());
+                    break;
+                case 5:
+                    view = controller.process(new PrintYearlyReportCommand());
+                    break;
+                default:
+                    view = new InvalidCommandView();
             }
 
             output.println(view.render());

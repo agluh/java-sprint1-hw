@@ -1,13 +1,17 @@
 package praktikum;
 
-import praktikum.controller.*;
-import praktikum.domain.*;
-import praktikum.io.*;
-import praktikum.app.*;
+import praktikum.app.Application;
+import praktikum.app.ConsoleApplication;
+import praktikum.controller.AccountingController;
+import praktikum.controller.Controller;
+import praktikum.domain.AccountingHelper;
+import praktikum.domain.ReportParser;
+import praktikum.io.CsvReportParser;
+import praktikum.io.LocalReportRepository;
 
 public class Main {
     public static void main(String[] args) {
-        ReportParser parser = new CSVReportParser();
+        ReportParser parser = new CsvReportParser();
         AccountingHelper helper = new AccountingHelper(
                 new LocalReportRepository(parser, "resources", "csv"),
                 new LocalReportRepository(parser, "resources", "csv")

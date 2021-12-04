@@ -1,8 +1,8 @@
 package praktikum.domain;
 
-import praktikum.presentation.*;
-
 import java.util.ArrayList;
+import praktikum.presentation.MonthlyReportPresentation;
+import praktikum.presentation.YearlyReportPresentation;
 
 /**
  * This class is used as a domain service for orchestration purposes.

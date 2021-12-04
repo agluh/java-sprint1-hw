@@ -1,10 +1,14 @@
 package praktikum.io;
 
-import praktikum.domain.*;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import praktikum.domain.Month;
+import praktikum.domain.MonthlyReport;
+import praktikum.domain.MonthlyReportRepository;
+import praktikum.domain.ReportParser;
+import praktikum.domain.YearlyReport;
+import praktikum.domain.YearlyReportRepository;
 
 public class LocalReportRepository implements MonthlyReportRepository, YearlyReportRepository {
     private final ReportParser parser;

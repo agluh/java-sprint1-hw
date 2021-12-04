@@ -1,6 +1,7 @@
 package praktikum.domain;
 
-import praktikum.io.*;
+import praktikum.io.ReportLoadingException;
+import praktikum.io.ReportParsingException;
 
 public interface YearlyReportRepository {
 

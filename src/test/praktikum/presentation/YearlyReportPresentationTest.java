@@ -1,12 +1,12 @@
 package praktikum.presentation;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import praktikum.domain.Month;
 import praktikum.domain.YearlyReport;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class YearlyReportPresentationTest {
     private static final int YEAR = 2021;
@@ -41,14 +41,14 @@ class YearlyReportPresentationTest {
         assertEquals(YEAR, presentation.getYear());
 
         var ref = new Object() {
-            int i = 0;
+            int index = 0;
         };
 
         presentation.getProfit().forEach(a -> {
-            assertEquals(MONTHS[ref.i], a.getMonth());
-            int expectedProfit = INCOME[ref.i] - EXPENSES[ref.i];
+            assertEquals(MONTHS[ref.index], a.getMonth());
+            int expectedProfit = INCOME[ref.index] - EXPENSES[ref.index];
             assertEquals(expectedProfit, a.getProfit());
-            ref.i++;
+            ref.index++;
         });
     }
 }

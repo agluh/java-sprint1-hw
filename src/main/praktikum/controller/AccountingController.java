@@ -1,14 +1,26 @@
 package praktikum.controller;
 
-import praktikum.command.*;
-import praktikum.domain.*;
-import praktikum.io.ReportLoadingException;
-import praktikum.io.ReportParsingException;
-import praktikum.presentation.*;
-import praktikum.view.*;
-
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import praktikum.command.Command;
+import praktikum.command.LoadMonthlyReportsCommand;
+import praktikum.command.LoadYearlyReportCommand;
+import praktikum.command.PrintMonthlyReportsCommand;
+import praktikum.command.PrintYearlyReportCommand;
+import praktikum.command.ValidateReportsCommand;
+import praktikum.domain.AbsentOfMonthlyReportsException;
+import praktikum.domain.AbsentOfYearlyReportException;
+import praktikum.domain.AccountingHelper;
+import praktikum.domain.ReportValidationException;
+import praktikum.io.ReportLoadingException;
+import praktikum.io.ReportParsingException;
+import praktikum.presentation.MonthlyReportPresentation;
+import praktikum.presentation.YearlyReportPresentation;
+import praktikum.view.ErrorView;
+import praktikum.view.MonthlyReportsView;
+import praktikum.view.SuccessView;
+import praktikum.view.View;
+import praktikum.view.YearlyReportView;
 
 public class AccountingController implements Controller {
     private final AccountingHelper helper;

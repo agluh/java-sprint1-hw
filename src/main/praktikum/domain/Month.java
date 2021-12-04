@@ -21,6 +21,8 @@ public enum Month {
     }
 
     /**
+     * Construct Month object from an int.
+     *
      * @param monthNumber In range from 1 to 12
      */
     public static Month fromInteger(int monthNumber) {

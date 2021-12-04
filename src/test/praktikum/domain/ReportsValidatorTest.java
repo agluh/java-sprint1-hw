@@ -1,22 +1,21 @@
 package praktikum.domain;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 class ReportsValidatorTest {
     private List<MonthlyReport> list;
 
     private static final int YEAR = 2021;
     private static final Month MONTH = Month.JANUARY;
-    private final static String[] PRODUCTS = {"Income 1", "Income 2", "Expense 1", "Expense 2"};
-    private final static int[] QUANTITY = {1, 2, 5, 1};
-    private final static int[] UNIT_PRICE = {100, 30, 10, 250};
+    private static final String[] PRODUCTS = {"Income 1", "Income 2", "Expense 1", "Expense 2"};
+    private static final int[] QUANTITY = {1, 2, 5, 1};
+    private static final int[] UNIT_PRICE = {100, 30, 10, 250};
 
     @BeforeEach
     void init() {

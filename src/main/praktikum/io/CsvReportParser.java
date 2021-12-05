@@ -52,7 +52,7 @@ public class CsvReportParser implements ReportParser {
                     throw new ReportParsingException();
                 }
 
-                int income = !firstIsExpense ? firstAmount : secondAmount;
+                int income = firstIsExpense ? secondAmount : firstAmount;
                 int expenses = firstIsExpense ? firstAmount : secondAmount;
 
                 report.addEntry(Month.fromInteger(month), income, expenses);

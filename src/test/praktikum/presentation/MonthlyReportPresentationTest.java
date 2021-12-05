@@ -36,7 +36,7 @@ class MonthlyReportPresentationTest {
     }
 
     @Test
-    public void testConstructor() {
+    void testConstructor() {
         MonthlyReportPresentation presentation = new MonthlyReportPresentation(list);
 
         MonthlyReportPresentation.Item item = presentation.getEntries().findFirst().orElseThrow();

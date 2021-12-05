@@ -14,7 +14,7 @@ class MonthlyReportTest {
     private static final int UNIT_PRICE = 100;
 
     @Test
-    public void testConstructor() {
+    void testConstructor() {
         MonthlyReport report = new MonthlyReport(YEAR, MONTH);
         assertEquals(YEAR, report.getYear());
         assertEquals(MONTH, report.getMonth());
@@ -23,7 +23,7 @@ class MonthlyReportTest {
     }
 
     @Test
-    public void testInsertNewExpenseEntry() {
+    void testInsertNewExpenseEntry() {
         MonthlyReport report = new MonthlyReport(YEAR, MONTH);
         report.addEntry(PRODUCT, QUANTITY, UNIT_PRICE, true);
 
@@ -41,7 +41,7 @@ class MonthlyReportTest {
     }
 
     @Test
-    public void testInsertNewIncomeEntry() {
+    void testInsertNewIncomeEntry() {
         MonthlyReport report = new MonthlyReport(YEAR, MONTH);
         report.addEntry(PRODUCT, QUANTITY, UNIT_PRICE, false);
 

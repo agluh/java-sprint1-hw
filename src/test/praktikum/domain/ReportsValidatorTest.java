@@ -34,7 +34,7 @@ class ReportsValidatorTest {
     }
 
     @Test
-    public void testCorrectReports() {
+    void testCorrectReports() {
         YearlyReport yr = new YearlyReport(YEAR);
 
         int expectedTotalIncome = QUANTITY[0] * UNIT_PRICE[0] + QUANTITY[1] * UNIT_PRICE[1];
@@ -46,7 +46,7 @@ class ReportsValidatorTest {
     }
 
     @Test
-    public void testIncorrectReports() {
+    void testIncorrectReports() {
         YearlyReport yr = new YearlyReport(YEAR);
         yr.addEntry(Month.JANUARY, 0, 0);
 

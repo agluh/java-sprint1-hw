@@ -14,7 +14,7 @@ class YearlyReportTest {
     private static final int EXPENSE = 100;
 
     @Test
-    public void testConstructor() {
+    void testConstructor() {
         YearlyReport report = new YearlyReport(YEAR);
 
         assertEquals(YEAR, report.getYear());
@@ -22,7 +22,7 @@ class YearlyReportTest {
     }
 
     @Test
-    public void testInsertNewEntry() {
+    void testInsertNewEntry() {
         YearlyReport report = new YearlyReport(YEAR);
 
         report.addEntry(MONTH, INCOME, EXPENSE);
@@ -36,7 +36,7 @@ class YearlyReportTest {
     }
 
     @Test
-    public void testGetEntryByMonth() {
+    void testGetEntryByMonth() {
         YearlyReport report = new YearlyReport(YEAR);
 
         report.addEntry(MONTH, INCOME, EXPENSE);
@@ -50,7 +50,7 @@ class YearlyReportTest {
     }
 
     @Test
-    public void testGetEntryForNotExistedMonth() {
+    void testGetEntryForNotExistedMonth() {
         YearlyReport report = new YearlyReport(YEAR);
 
         report.addEntry(MONTH, INCOME, EXPENSE);

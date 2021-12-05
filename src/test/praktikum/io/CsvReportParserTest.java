@@ -15,7 +15,7 @@ class CsvReportParserTest {
             + "01,350000,true";
 
     @Test
-    public void testMonthlyReportParsing() {
+    void testMonthlyReportParsing() {
         CsvReportParser parser = new CsvReportParser();
         MonthlyReport report = Mockito.mock(MonthlyReport.class);
         parser.populate(report, CORRECT_MONTHLY_DATA);
@@ -24,7 +24,7 @@ class CsvReportParserTest {
     }
 
     @Test
-    public void testYearlyReportParsing() {
+    void testYearlyReportParsing() {
         CsvReportParser parser = new CsvReportParser();
         YearlyReport report = Mockito.mock(YearlyReport.class);
         parser.populate(report, CORRECT_YEARLY_DATA);

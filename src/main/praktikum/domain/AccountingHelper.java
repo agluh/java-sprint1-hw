@@ -1,6 +1,7 @@
 package praktikum.domain;
 
 import java.util.ArrayList;
+import java.util.List;
 import praktikum.presentation.MonthlyReportPresentation;
 import praktikum.presentation.YearlyReportPresentation;
 
@@ -10,7 +11,7 @@ import praktikum.presentation.YearlyReportPresentation;
 public class AccountingHelper {
     private final MonthlyReportRepository monthlyReportRepository;
     private final YearlyReportRepository yearlyReportRepository;
-    private final ArrayList<MonthlyReport> monthlyReports;
+    private final List<MonthlyReport> monthlyReports;
     private YearlyReport yearlyReport;
 
     public AccountingHelper(MonthlyReportRepository monthlyReportRepository,

@@ -17,6 +17,38 @@ public class ConsoleApplication implements Application {
     private final PrintStream output;
     private final Controller controller;
 
+    enum MenuCommand {
+        LOAD_MONTHLY_REPORTS("1", "Считать все месячные отчёты"),
+        LOAD_YEARLY_REPORT("2", "Считать годовой отчёт"),
+        VALIDATE_REPORTS("3", "Сверить отчёты"),
+        PRINT_MONTHLY_REPORTS("4", "Вывести информацию о всех месячных отчётах"),
+        PRINT_YEARLY_REPORT("5", "Вывести информацию о годовом отчёте"),
+        EXIT("0", "Выйти из программы");
+
+        String key;
+        String name;
+
+        MenuCommand(String key, String name) {
+            this.key = key;
+            this.name = name;
+        }
+
+        static MenuCommand fromString(String key) {
+            for (MenuCommand v : MenuCommand.values()) {
+                if (v.key.equals(key)) {
+                    return v;
+                }
+            }
+
+            throw new IllegalArgumentException(String.format("Unknown menu command key: %s", key));
+        }
+
+        @Override
+        public String toString() {
+            return key + " - " + name;
+        }
+    }
+
     public ConsoleApplication(InputStream input, PrintStream output, Controller controller) {
         this.input = input;
         this.output = output;
@@ -30,35 +62,35 @@ public class ConsoleApplication implements Application {
         while (true) {
             printMenu();
 
-            int command;
+            MenuCommand command;
             try {
-                command = Integer.parseInt(scanner.next());
-            } catch (NumberFormatException e) {
+                command = MenuCommand.fromString(scanner.next());
+            } catch (IllegalArgumentException e) {
                 output.println(new InvalidCommandView().render());
                 output.println();
                 continue;
             }
 
-            if (command == 0) {
+            if (command == MenuCommand.EXIT) {
                 output.println("До свидания!");
                 break;
             }
 
             View view;
             switch (command) {
-                case 1:
+                case LOAD_MONTHLY_REPORTS:
                     view = controller.process(new LoadMonthlyReportsCommand());
                     break;
-                case 2:
+                case LOAD_YEARLY_REPORT:
                     view = controller.process(new LoadYearlyReportCommand());
                     break;
-                case 3:
+                case VALIDATE_REPORTS:
                     view = controller.process(new ValidateReportsCommand());
                     break;
-                case 4:
+                case PRINT_MONTHLY_REPORTS:
                     view = controller.process(new PrintMonthlyReportsCommand());
                     break;
-                case 5:
+                case PRINT_YEARLY_REPORT:
                     view = controller.process(new PrintYearlyReportCommand());
                     break;
                 default:
@@ -72,11 +104,8 @@ public class ConsoleApplication implements Application {
 
     private void printMenu() {
         output.println("Пожалуйста, выберите действие:");
-        output.println("1 - Считать все месячные отчёты");
-        output.println("2 - Считать годовой отчёт");
-        output.println("3 - Сверить отчёты");
-        output.println("4 - Вывести информацию о всех месячных отчётах");
-        output.println("5 - Вывести информацию о годовом отчёте");
-        output.println("Чтобы выйти из программы, наберите 0");
+        for (MenuCommand command : MenuCommand.values()) {
+            output.println(command);
+        }
     }
 }

@@ -2,7 +2,7 @@ package praktikum.view;
 
 import praktikum.presentation.MonthlyReportPresentation;
 
-public class MonthlyReportsView implements View {
+public class MonthlyReportsView {
     private final MonthlyReportPresentation presentation;
 
     public MonthlyReportsView(MonthlyReportPresentation presentation) {
@@ -10,7 +10,7 @@ public class MonthlyReportsView implements View {
     }
 
     @Override
-    public String render() {
+    public String toString() {
         StringBuilder builder = new StringBuilder();
 
         presentation.getEntries()

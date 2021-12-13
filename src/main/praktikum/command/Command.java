@@ -1,8 +1,17 @@
 package praktikum.command;
 
-/**
- * This is just a tagging interface for command processing.
- */
-public interface Command {
+import praktikum.app.InputInterface;
+import praktikum.app.OutputInterface;
 
+public interface Command {
+    String getKey();
+
+    String getDescription();
+
+    Status execute(InputInterface input, OutputInterface output);
+
+    enum Status {
+        TERMINATE,
+        CONTINUE
+    }
 }

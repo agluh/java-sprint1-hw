@@ -1,9 +1,12 @@
 package praktikum;
 
-import praktikum.app.Application;
 import praktikum.app.ConsoleApplication;
-import praktikum.controller.AccountingController;
-import praktikum.controller.Controller;
+import praktikum.command.LoadMonthlyReportsCommand;
+import praktikum.command.LoadYearlyReportCommand;
+import praktikum.command.PrintMonthlyReportsCommand;
+import praktikum.command.PrintYearlyReportCommand;
+import praktikum.command.TerminateAppCommand;
+import praktikum.command.ValidateReportsCommand;
 import praktikum.domain.AccountingHelper;
 import praktikum.domain.ReportParser;
 import praktikum.io.CsvReportParser;
@@ -16,8 +19,16 @@ public class Main {
                 new LocalReportRepository(parser, "resources", "csv"),
                 new LocalReportRepository(parser, "resources", "csv")
         );
-        Controller controller = new AccountingController(helper);
-        Application app = new ConsoleApplication(System.in, System.out, controller);
+
+        ConsoleApplication app = new ConsoleApplication(System.in, System.out);
+
+        app.registerCommand(new LoadMonthlyReportsCommand(helper));
+        app.registerCommand(new LoadYearlyReportCommand(helper));
+        app.registerCommand(new ValidateReportsCommand(helper));
+        app.registerCommand(new PrintMonthlyReportsCommand(helper));
+        app.registerCommand(new PrintYearlyReportCommand(helper));
+        app.registerCommand(new TerminateAppCommand());
+
         app.run();
     }
 }

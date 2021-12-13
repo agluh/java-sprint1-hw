@@ -2,7 +2,7 @@ package praktikum.view;
 
 import praktikum.presentation.YearlyReportPresentation;
 
-public class YearlyReportView implements View {
+public class YearlyReportView {
     private final YearlyReportPresentation presentation;
 
     public YearlyReportView(YearlyReportPresentation presentation) {
@@ -10,7 +10,7 @@ public class YearlyReportView implements View {
     }
 
     @Override
-    public String render() {
+    public String toString() {
         StringBuilder builder = new StringBuilder();
 
         builder.append(String.format("Отчёт за %d год%n", presentation.getYear()));
